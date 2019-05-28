@@ -1,10 +1,17 @@
 from django.contrib import admin
 from django.conf.urls import url,include
-from book.views import indexmiddleware, bookList,wodemiddleware
+from rest_framework.routers import DefaultRouter
+# from book.views import indexmiddleware, bookList,wodemiddleware
+
+from . import views
+
+
+router = DefaultRouter()
+router.register(r'^books',views.BookInfoViewSet,)
 
 urlpatterns = [
-    # url('admin/', admin.site.urls),
-    url(r'^midd/$',wodemiddleware),
-    url(r'^bookList/$',bookList,name='index'),
-    url(r'^(?P<value1>\d+)/(?P<value2>\d+)/$',indexmiddleware)
+    url(r'^',include(router.urls)),
+    # url(r'^books/(?P<id>\d+)',views.BookDetailView.as_view()),
+    # url(r'^books/$',views.BookInfoViewSet.as_view(),name='index'),
 ]
+
