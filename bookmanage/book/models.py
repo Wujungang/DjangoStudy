@@ -17,7 +17,7 @@ class BookInfo(models.Model):
 
     def __str__(self):
         """定义每个数据对象的显示信息"""
-        return self.name
+        return self.name + str(self.readcount)
 
     def bookname(self):
         return '<<' + self.name + '>>'
